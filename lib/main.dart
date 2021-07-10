@@ -53,11 +53,24 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                backgroundColor: defaultColor,
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.grey[335],
+              ),
+              appBarTheme: AppBarTheme(
+                iconTheme: IconThemeData(
+                  color: Colors.white,
+                )
+              ),
               primaryColor: defaultColor,
+              iconTheme: IconThemeData(
+                color: defaultColor
+              ),
             ),
             darkTheme: ThemeData(),
-            themeMode: ThemeMode.dark,
-          home: true? startWidget: OnBoardScreen(),
+            themeMode: ThemeMode.light,
+          home: true? HomeLayout(): OnBoardScreen(),
           );
         },
       ),
