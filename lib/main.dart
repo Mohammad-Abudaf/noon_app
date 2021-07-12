@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_app/modules/login_screen/login_screen_cubit/login_cubit.dart';
 import 'package:shop_app/modules/on_board_screen/on_board_screen.dart';
-import 'package:shop_app/shared/componants/componants.dart';
 import 'package:shop_app/shared/cubit/app_cubit.dart';
 import 'package:shop_app/shared/cubit/bloc_observer.dart';
 import 'package:shop_app/shared/network/local/cache_helper.dart';
@@ -41,11 +40,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppCubit(),
+          create: (context) => AppCubit()..getHomeData(),
         ),
         BlocProvider(
           create: (context) => LoginCubit(),
-        )
+        ),
       ],
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},
@@ -70,7 +69,7 @@ class MyApp extends StatelessWidget {
             ),
             darkTheme: ThemeData(),
             themeMode: ThemeMode.light,
-          home: true? HomeLayout(): OnBoardScreen(),
+          home: onBoarding? HomeLayout(): OnBoardScreen(),
           );
         },
       ),
