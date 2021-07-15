@@ -16,7 +16,7 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
-  bool onBoarding =  CacheHelper.getData(key: 'isBoarding') != null;
+  bool onBoarding =  CacheHelper.getData(key: 'isBoarding');
   Widget widget;
   if(onBoarding){
     if(CacheHelper.sharedPreferences.getString('taken') != null){
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppCubit()..getHomeData(),
+          create: (context) => AppCubit()..getHomeData()..getCategoriesData()..getFavorites()..getUserData(),
         ),
         BlocProvider(
           create: (context) => LoginCubit(),
